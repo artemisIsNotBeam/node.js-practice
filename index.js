@@ -1,9 +1,16 @@
 var express = require("express");
 var app = express();
+var userCount = 0;
 
+app.use('/client', express.static(__dirname + '/client'));
 
-app.get('http:/www.google.com', function(request,result){
+app.get('/', function(request,result){
+	userCount +=1;
+	result.sendFile(__dirname + '/client/index.html');
 
-	result.send("hello world");
 	
+})
+
+app.listen(3000, function(){
+		console.log("server started");
 })
